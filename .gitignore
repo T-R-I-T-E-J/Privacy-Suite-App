@@ -1,0 +1,42 @@
+# Node
+node_modules/
+dist/
+build/
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Sensi-Scan Outputs
+*.redacted.*
+backend/sensi_scan/*.json
+backend/sensi_scan/*.docx
+!backend/sensi_scan/test_*.docx  # Keep specific test docs if needed, but we removed most
+
+# Electron / Packaging
+out/
+release/
+*.exe
+*.AppImage
+*.dmg
+
+# OS
+.DS_Store
+Thumbs.db

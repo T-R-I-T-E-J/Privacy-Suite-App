@@ -1,0 +1,25 @@
+# Privacy Suite App - Python Backend (Sensi-Scan Engine)
+# Compatible versions for Python 3.11
+
+# Core text processing
+regex>=2024.0.0
+pdfminer.six==20221105
+python-docx==1.1.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Machine learning (using full TensorFlow instead of lite-runtime)
+tensorflow>=2.15.0
+
+# Image processing
+Pillow>=10.0.0
+
+# Utilities
+tqdm>=4.66.0
+colorama>=0.4.6
+
+# Packaging and security
+PyInstaller>=6.0.0
+pip-audit>=2.7.0

@@ -1,0 +1,32 @@
+{
+  "name": "privacy-suite-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Privacy Suite App - Frontend with React",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.80",
+    "piexifjs": "^1.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "classnames": "^2.5.1",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react": "^7.37.5",
+    "monaco-editor": "^0.55.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "zustand": "^5.0.11"
+  }
+}
