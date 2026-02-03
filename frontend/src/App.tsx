@@ -2,7 +2,8 @@ import { useState } from 'react'
 import ModuleCard from './components/ModuleCard'
 import CodeAuditDemo from './components/CodeAuditDemo'
 import CareerCloak from './components/CareerCloak'
-import SecretCapsule from './components/SecretCapsule' // New
+import SecretCapsule from './components/SecretCapsule'
+import MockGenerator from './components/MockGenerator' // New
 import './App.css'
 
 // Declare Electron API types
@@ -18,7 +19,7 @@ declare global {
 }
 
 // Update Module Types
-type Module = 'sensi-scan' | 'pixel-purge' | 'code-audit' | 'career-cloak' | 'secret-capsule' | null;
+type Module = 'sensi-scan' | 'pixel-purge' | 'code-audit' | 'career-cloak' | 'secret-capsule' | 'mock-generator' | null;
 
 function App() {
     const [selectedModule, setSelectedModule] = useState<Module>(null)
@@ -48,6 +49,12 @@ function App() {
             title: 'Secret Capsule',
             description: 'Zero-Knowledge P2P File Share',
             icon: '🔐'
+        },
+        {
+            id: 'mock-generator',
+            title: 'Mock Generator',
+            description: 'Anonymized Data Streamer (Millions of Rows)',
+            icon: '🎭'
         },
         {
             id: 'sensi-scan',
@@ -94,6 +101,11 @@ function App() {
                 <div className="module-full-width">
                     <button className="back-btn" onClick={() => setSelectedModule(null)}>← Back to Dashboard</button>
                     <SecretCapsule />
+                </div>
+            ) : selectedModule === 'mock-generator' ? (
+                <div className="module-full-width">
+                    <button className="back-btn" onClick={() => setSelectedModule(null)}>← Back to Dashboard</button>
+                    <MockGenerator />
                 </div>
             ) : (
                 <main className="module-view">

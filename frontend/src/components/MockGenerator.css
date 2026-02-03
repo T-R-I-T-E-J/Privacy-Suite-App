@@ -1,0 +1,177 @@
+.mock-gen-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text);
+}
+
+.gen-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.gen-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+}
+
+.config-panel,
+.preview-panel {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.control-group {
+    margin-bottom: 1.5rem;
+}
+
+.range-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.range-wrap input {
+    flex: 1;
+}
+
+.value-badge {
+    background: var(--primary);
+    color: #000;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    min-width: 100px;
+    text-align: center;
+}
+
+.columns-list {
+    margin-bottom: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.col-header {
+    display: grid;
+    grid-template-columns: 2fr 2fr 40px;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.col-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 40px;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.col-row input,
+.col-row select {
+    background: #000;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 0.4rem;
+    border-radius: 4px;
+}
+
+.btn-del {
+    background: #ff4444;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px dashed var(--text-muted);
+    color: var(--text-muted);
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.btn-generate {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: #000;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+.btn-generate:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.status-bar {
+    margin-top: 1.5rem;
+}
+
+.progress-track {
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #00ffcc);
+    width: 0%;
+    transition: width 0.2s;
+}
+
+.log-text {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Terminal Preview */
+.terminal-preview {
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #0f0;
+}
+
+.csv-header {
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.csv-row {
+    margin-bottom: 0.2rem;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+.opacity-50 {
+    opacity: 0.50;
+}
+
+.opacity-25 {
+    opacity: 0.25;
+}
