@@ -8,9 +8,7 @@ name = "pixel_purge"
 path = "src/lib.rs"
 
 [dependencies]
-exif = "0.7.1"
 image = "0.24.7"
-heif = { version = "0.2.1", features = ["libheif"] }
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"
 clap = { version = "4.5.4", features = ["derive"] }

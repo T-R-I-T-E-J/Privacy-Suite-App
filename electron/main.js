@@ -1,9 +1,12 @@
 const { app, BrowserWindow, ipcMain, shell } = require('electron');
 const path = require('path');
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
+const { promisify } = require('util');
 const fs = require('fs').promises;
 const os = require('os');
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
+
+const execAsync = promisify(exec);
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -14,6 +17,13 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js'),
     },
+  });
+
+  // Suppress DevTools protocol errors (like Autofill.enable)
+  mainWindow.webContents.on('console-message', (event, level, message) => {
+    if (message.includes('Autofill.enable') || message.includes('wasn\'t found')) {
+      return; // Suppress harmless DevTools protocol warnings
+    }
   });
 
   if (isDev) {
@@ -34,6 +44,34 @@ function getPixelPurgePath() {
     // Production: binary should be bundled with the app
     const binaryName = process.platform === 'win32' ? 'pixel-purge.exe' : 'pixel-purge';
     return path.join(process.resourcesPath, 'pixel-purge', binaryName);
+  }
+}
+
+// Clear Windows file attributes (owner and computer info)
+async function clearWindowsFileAttributes(filePath) {
+  if (process.platform !== 'win32') {
+    return { success: true }; // Not Windows, skip
+  }
+
+  try {
+    // Use PowerShell to remove owner/computer info
+    // This requires running as administrator or having proper permissions
+    const escapedPath = filePath.replace(/"/g, '`"');
+    const psCommand = `
+      $file = Get-Item "${escapedPath}"
+      $acl = $file.GetAccessControl()
+      $acl.SetOwner([System.Security.Principal.NTAccount]"Everyone")
+      $file.SetAccessControl($acl)
+      # Clear extended attributes that might contain computer info
+      (Get-Item $file.FullName).Attributes = "Archive"
+    `;
+    
+    await execAsync(`powershell -Command "${psCommand}"`);
+    return { success: true };
+  } catch (error) {
+    // If we can't change ownership, at least try to clear some attributes
+    console.warn('Could not clear Windows file attributes:', error.message);
+    return { success: false, error: error.message };
   }
 }
 
@@ -154,7 +192,7 @@ ipcMain.handle('pixel-purge:process', async (event, options) => {
         stderr += data.toString();
       });
 
-      process.on('close', (code) => {
+      process.on('close', async (code) => {
         if (code !== 0) {
           resolve({
             success: false,
@@ -166,7 +204,19 @@ ipcMain.handle('pixel-purge:process', async (event, options) => {
         try {
           // Parse JSON output from binary
           const result = JSON.parse(stdout);
-          resolve(result);
+          // Transform snake_case to camelCase for TypeScript compatibility
+          const transformedResult = {
+            success: result.success,
+            outputPath: result.output_path || result.outputPath,
+            error: result.error,
+          };
+          
+          // Clear Windows file attributes if processing succeeded
+          if (transformedResult.success && transformedResult.outputPath) {
+            await clearWindowsFileAttributes(transformedResult.outputPath);
+          }
+          
+          resolve(transformedResult);
         } catch (e) {
           resolve({
             success: false,
@@ -221,6 +271,15 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+});
+
+// Handle uncaught errors
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
 app.on('window-all-closed', () => {

@@ -1,4 +1,3 @@
-use crate::gps;
 use crate::ProcessingOptions;
 use anyhow::{Context, Result};
 use image::{DynamicImage, ImageFormat};

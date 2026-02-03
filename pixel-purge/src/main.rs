@@ -1,5 +1,5 @@
 use clap::Parser;
-use pixel_purge::{process_image, ProcessingOptions, ProcessingResult};
+use pixel_purge::{process_image, ProcessingOptions};
 use serde_json;
 use std::io::{self, Read};
 

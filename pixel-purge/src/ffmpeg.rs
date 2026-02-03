@@ -1,11 +1,10 @@
 use anyhow::{Context, Result};
-use std::path::Path;
 use std::process::Command;
 
 pub fn find_ffmpeg() -> Option<String> {
     // Check tools/ directory first (relative to project root)
-    let project_root = std::env::current_dir()
-        .ok()?
+    let current_dir = std::env::current_dir().ok()?;
+    let project_root = current_dir
         .ancestors()
         .find(|p| p.join("tools").exists())?;
     

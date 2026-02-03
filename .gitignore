@@ -51,4 +51,6 @@ frontend/public/airgap/models/*.bin
 
 # Tools
 tools/ffmpeg-*
+tools/ffmpeg.exe
+tools/ffprobe.exe
 tools/openssl-*

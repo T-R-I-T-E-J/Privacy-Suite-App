@@ -4,7 +4,6 @@ pub mod heic;
 pub mod ffmpeg;
 
 use serde::{Deserialize, Serialize};
-use anyhow::Result;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProcessingOptions {

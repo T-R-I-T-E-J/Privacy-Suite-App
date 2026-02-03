@@ -36,6 +36,23 @@ cd pixel-purge
 cargo build --release
 ```
 
+### FFmpeg (Optional but Recommended)
+FFmpeg is required for video/audio metadata stripping. The pixel-purge tool will automatically use FFmpeg if available.
+
+**Automatic Installation (Windows):**
+```bash
+tools\install-ffmpeg.bat
+```
+
+**Manual Installation:**
+1. Download FFmpeg Windows build from [BtbN FFmpeg Builds](https://github.com/BtbN/FFmpeg-Builds/releases) or [gyan.dev](https://www.gyan.dev/ffmpeg/builds/)
+2. Extract the archive and copy `ffmpeg.exe` to the `tools/` directory
+3. Verify installation: `tools\ffmpeg.exe -version`
+
+The tool will check for FFmpeg in this order:
+1. `tools/ffmpeg.exe` (local project directory)
+2. System PATH
+
 ## WebLLM Models
 
 Place model files in `frontend/public/airgap/models/`:

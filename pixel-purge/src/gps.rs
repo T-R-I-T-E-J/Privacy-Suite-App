@@ -1,13 +1,28 @@
 use anyhow::Result;
-use exif::{Exif, Rational, Tag};
 
-pub fn inject_fake_gps(exif_data: &mut Exif, lat: f64, lon: f64) -> Result<()> {
-    let lat_rational = decimal_to_rational(lat);
-    let lon_rational = decimal_to_rational(lon);
+// Simple Rational type for GPS coordinates
+#[derive(Debug, Clone)]
+pub struct Rational {
+    pub numerator: i32,
+    pub denominator: i32,
+}
+
+impl Rational {
+    pub fn new(numerator: i32, denominator: i32) -> Self {
+        Rational {
+            numerator,
+            denominator,
+        }
+    }
+}
+
+pub fn inject_fake_gps(lat: f64, lon: f64) -> Result<()> {
+    let _lat_rational = decimal_to_rational(lat);
+    let _lon_rational = decimal_to_rational(lon);
     
     // Set GPS latitude
-    let lat_ref = if lat >= 0.0 { "N" } else { "S" };
-    let lon_ref = if lon >= 0.0 { "E" } else { "W" };
+    let _lat_ref = if lat >= 0.0 { "N" } else { "S" };
+    let _lon_ref = if lon >= 0.0 { "E" } else { "W" };
     
     // Note: The exif crate's API doesn't directly support writing tags
     // This is a placeholder - actual implementation would need to use

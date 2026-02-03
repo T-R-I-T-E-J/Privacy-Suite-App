@@ -1,5 +1,5 @@
 use crate::ProcessingOptions;
-use anyhow::{Context, Result};
+use anyhow::Result;
 
 pub fn process_heic(
     _input_path: &str,

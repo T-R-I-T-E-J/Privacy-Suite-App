@@ -326,9 +326,30 @@ export function PixelPurge() {
       {result?.success && (
         <div className="status success">
           <p>Image processed successfully!</p>
-          <button className="download-btn" onClick={handleDownload}>
-            Download Sanitized Image
-          </button>
+          {result.outputPath && (
+            <div style={{ margin: '10px 0', padding: '10px', background: '#f0f0f0', borderRadius: '4px', wordBreak: 'break-all' }}>
+              <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>Output Path:</p>
+              <p style={{ margin: 0, fontFamily: 'monospace', fontSize: '12px' }}>{result.outputPath}</p>
+            </div>
+          )}
+          <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+            <button className="download-btn" onClick={handleDownload}>
+              Download Sanitized Image
+            </button>
+            {result.outputPath && (
+              <button 
+                className="download-btn" 
+                onClick={async () => {
+                  if (window.pixelPurge && result.outputPath) {
+                    await window.pixelPurge.openFile(result.outputPath);
+                  }
+                }}
+                style={{ background: '#6c757d' }}
+              >
+                Open File Location
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
