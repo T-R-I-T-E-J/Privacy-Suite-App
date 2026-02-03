@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sensi-scan"
+version = "0.1.0"
+description = "Document sensitive information scanner"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "regex>=2026.1.15",
+    "pdfminer.six>=20260107",
+    "python-docx>=1.2.0",
+    "pandas>=3.0.0",
+    "numpy>=2.4.2",
+    # "tensorflow-lite-runtime>=2.13.0",  # Not available for Python 3.13 yet
+    "Pillow>=12.1.0",
+    "tqdm>=4.66.5",
+    "colorama>=0.4.6",
+]
+
+[project.scripts]
+sensi-scan = "sensi_scan.__main__:main"
+
+[tool.setuptools]
+packages = ["sensi_scan"]

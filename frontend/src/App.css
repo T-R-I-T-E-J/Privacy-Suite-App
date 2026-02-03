@@ -1,0 +1,139 @@
+/* Phase 3: App Shell & Orchestration */
+.app {
+    width: 100%;
+    max-width: 1400px;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    animation: slideDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05rem;
+}
+
+header p {
+    color: var(--primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    margin: 0 0 5px 0;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Dashboard Grid */
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* Staggered Animation for Cards */
+/* Since cards are children of .module-grid, we target them via the component class */
+/* Note: This depends on the component structure, assuming ModuleCard creates a div.module-card */
+.module-grid>* {
+    opacity: 0;
+    animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.module-grid>*:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.module-grid>*:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.module-grid>*:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Full Width Module View */
+.module-full-width {
+    width: 100%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Back Button */
+.back-btn {
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    color: var(--primary);
+    transform: translateX(-5px);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.module-view {
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-panel);
+    border-radius: var(--radius-md);
+    padding: 4rem;
+    text-align: center;
+    color: var(--text-muted);
+    /* Subtle glass pattern */
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.02) 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+}

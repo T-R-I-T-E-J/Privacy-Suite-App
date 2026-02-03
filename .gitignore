@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+backend/sensi_scan/env/
+backend/llm_reviewer/__pycache__/
+backend/sensi_scan/__pycache__/
+*.pyc
+
+# Builds
+dist/
+build/
+target/
+
+# Large Models (Must not be pushed to standard git)
+*.bin
+*.gguf
+backend/airgap_model/models/*.bin
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

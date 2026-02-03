@@ -1,0 +1,81 @@
+/* Phase 3: Tech-Module Cards */
+.module-card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 3rem;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient Top Border */
+.module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: center;
+}
+
+.module-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Icon Container */
+.module-icon {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    filter: grayscale(1) opacity(0.7);
+    transition: all 0.4s ease;
+    transform: scale(0.95);
+}
+
+.module-card:hover .module-icon {
+    color: var(--primary);
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.1);
+    text-shadow: 0 0 20px var(--primary-glow);
+}
+
+.module-card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    font-weight: 600;
+    letter-spacing: -0.02rem;
+}
+
+.module-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    transition: color 0.3s ease;
+}
+
+.module-card:hover p {
+    color: #aaa;
+}
+
+/* Active State Visuals */
+.module-card:hover {
+    background-color: #111;
+    border-color: var(--border-bright);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}

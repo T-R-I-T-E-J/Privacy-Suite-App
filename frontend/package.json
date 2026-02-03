@@ -1,0 +1,39 @@
+{
+    "name": "privacy-suite-frontend",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "eslint src --ext .ts,.tsx",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "@electron/remote": "2.1.2",
+        "@mlc-ai/web-llm": "^0.2.72",
+        "classnames": "2.5.1",
+        "electron": "29.0.0",
+        "electron-log": "5.1.2",
+        "electron-reload": "1.5.0",
+        "monaco-editor": "0.45.0",
+        "react": "18.3.0",
+        "react-dom": "18.3.0",
+        "webgpu-polyfill": "0.0.0",
+        "zustand": "4.5.2"
+    },
+    "devDependencies": {
+        "@types/react": "18.3.3",
+        "@types/react-dom": "18.3.0",
+        "@vitejs/plugin-react": "^5.1.3",
+        "electron-builder": "24.13.1",
+        "eslint": "9.5.0",
+        "eslint-plugin-react": "7.35.2",
+        "prettier": "3.3.2",
+        "typescript": "5.2.2",
+        "vite": "5.0.10"
+    },
+    "engines": {
+        "node": ">=20"
+    }
+}
