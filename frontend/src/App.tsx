@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import ModuleCard from './components/ModuleCard'
 import CodeAuditDemo from './components/CodeAuditDemo'
-import CareerCloak from './components/CareerCloak' // Import new component
+import CareerCloak from './components/CareerCloak'
+import SecretCapsule from './components/SecretCapsule' // New
 import './App.css'
 
 // Declare Electron API types
@@ -17,7 +18,7 @@ declare global {
 }
 
 // Update Module Types
-type Module = 'sensi-scan' | 'pixel-purge' | 'code-audit' | 'career-cloak' | null;
+type Module = 'sensi-scan' | 'pixel-purge' | 'code-audit' | 'career-cloak' | 'secret-capsule' | null;
 
 function App() {
     const [selectedModule, setSelectedModule] = useState<Module>(null)
@@ -41,6 +42,12 @@ function App() {
             title: 'Career Cloak',
             description: 'ATS Resume Optimizer (Local Vectors)',
             icon: '🧥'
+        },
+        {
+            id: 'secret-capsule',
+            title: 'Secret Capsule',
+            description: 'Zero-Knowledge P2P File Share',
+            icon: '🔐'
         },
         {
             id: 'sensi-scan',
@@ -82,6 +89,11 @@ function App() {
                 <div className="module-full-width">
                     <button className="back-btn" onClick={() => setSelectedModule(null)}>← Back to Dashboard</button>
                     <CareerCloak />
+                </div>
+            ) : selectedModule === 'secret-capsule' ? (
+                <div className="module-full-width">
+                    <button className="back-btn" onClick={() => setSelectedModule(null)}>← Back to Dashboard</button>
+                    <SecretCapsule />
                 </div>
             ) : (
                 <main className="module-view">
