@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ModuleCard from './components/ModuleCard'
 import CodeAuditDemo from './components/CodeAuditDemo'
+import CareerCloak from './components/CareerCloak' // Import new component
 import './App.css'
 
 // Declare Electron API types
@@ -15,7 +16,8 @@ declare global {
     }
 }
 
-type Module = 'sensi-scan' | 'pixel-purge' | 'airgap-chat' | null;
+// Update Module Types
+type Module = 'sensi-scan' | 'pixel-purge' | 'code-audit' | 'career-cloak' | null;
 
 function App() {
     const [selectedModule, setSelectedModule] = useState<Module>(null)
@@ -29,9 +31,21 @@ function App() {
 
     const modules: ModuleItem[] = [
         {
+            id: 'code-audit',
+            title: 'Code Audit',
+            description: 'AI-powered security analysis (Local LLM)',
+            icon: '🕵️‍♂️'
+        },
+        {
+            id: 'career-cloak',
+            title: 'Career Cloak',
+            description: 'ATS Resume Optimizer (Local Vectors)',
+            icon: '🧥'
+        },
+        {
             id: 'sensi-scan',
             title: 'SensiScan',
-            description: 'Scan documents for sensitive information (PII, credentials)',
+            description: 'Scan documents for sensitive PII',
             icon: '🔍'
         },
         {
@@ -39,12 +53,6 @@ function App() {
             title: 'PixelPurge',
             description: 'Remove EXIF metadata from images',
             icon: '🖼️'
-        },
-        {
-            id: 'airgap-chat',
-            title: 'Code Audit',
-            description: 'AI-powered security analysis (100% offline)',
-            icon: '🕵️'
         }
     ]
 
@@ -65,10 +73,15 @@ function App() {
                         />
                     ))}
                 </main>
-            ) : selectedModule === 'airgap-chat' ? (
+            ) : selectedModule === 'code-audit' ? (
                 <div className="module-full-width">
                     <button className="back-btn" onClick={() => setSelectedModule(null)}>← Back to Dashboard</button>
                     <CodeAuditDemo />
+                </div>
+            ) : selectedModule === 'career-cloak' ? (
+                <div className="module-full-width">
+                    <button className="back-btn" onClick={() => setSelectedModule(null)}>← Back to Dashboard</button>
+                    <CareerCloak />
                 </div>
             ) : (
                 <main className="module-view">
