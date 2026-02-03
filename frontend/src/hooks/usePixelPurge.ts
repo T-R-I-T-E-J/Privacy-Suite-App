@@ -5,7 +5,7 @@ interface ProcessingOptions {
   outputPath: string;
   stripTags?: string[];
   fakeGps?: { lat: number; lon: number } | null;
-  forceFfmpeg?: boolean;
+  forceExiftool?: boolean;
   quality?: number;
 }
 
@@ -79,7 +79,7 @@ export function usePixelPurge(): UsePixelPurgeReturn {
           outputPath,
           stripTags: ['GPS', 'DateTime', 'Make', 'Model', 'Software'],
           fakeGps: null,
-          forceFfmpeg: false,
+          forceExiftool: false,
           quality: 100,
           ...options,
         };

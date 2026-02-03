@@ -1,7 +1,7 @@
 pub mod processor;
 pub mod gps;
 pub mod heic;
-pub mod ffmpeg;
+pub mod exiftool;
 
 use serde::{Deserialize, Serialize};
 
@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 pub struct ProcessingOptions {
     pub strip_tags: Vec<String>,
     pub fake_gps: Option<(f64, f64)>,
-    pub force_ffmpeg: bool,
+    pub force_exiftool: bool,
     pub quality: u8,
 }
 
@@ -24,7 +24,7 @@ impl Default for ProcessingOptions {
                 "Software".to_string(),
             ],
             fake_gps: None,
-            force_ffmpeg: false,
+            force_exiftool: false,
             quality: 100,
         }
     }
@@ -69,8 +69,8 @@ pub fn process_image(
         };
     }
 
-    if options.force_ffmpeg {
-        return match ffmpeg::strip_with_ffmpeg(input_path, output_path) {
+    if options.force_exiftool {
+        return match exiftool::strip_with_exiftool(input_path, output_path, &options) {
             Ok(_) => ProcessingResult {
                 success: true,
                 output_path: Some(output_path.to_string()),
@@ -79,7 +79,7 @@ pub fn process_image(
             Err(e) => ProcessingResult {
                 success: false,
                 output_path: None,
-                error: Some(format!("FFmpeg processing failed: {}", e)),
+                error: Some(format!("ExifTool processing failed: {}", e)),
             },
         };
     }
@@ -91,20 +91,20 @@ pub fn process_image(
             error: None,
         },
         Err(e) => {
-            // Try FFmpeg fallback on error
-            log::warn!("Rust processing failed, attempting FFmpeg fallback: {}", e);
-            match ffmpeg::strip_with_ffmpeg(input_path, output_path) {
+            // Try ExifTool fallback on error
+            log::warn!("Rust processing failed, attempting ExifTool fallback: {}", e);
+            match exiftool::strip_with_exiftool(input_path, output_path, &options) {
                 Ok(_) => ProcessingResult {
                     success: true,
                     output_path: Some(output_path.to_string()),
                     error: None,
                 },
-                Err(ffmpeg_err) => ProcessingResult {
+                Err(exiftool_err) => ProcessingResult {
                     success: false,
                     output_path: None,
                     error: Some(format!(
-                        "Processing failed: {}. FFmpeg fallback also failed: {}",
-                        e, ffmpeg_err
+                        "Processing failed: {}. ExifTool fallback also failed: {}",
+                        e, exiftool_err
                     )),
                 },
             }

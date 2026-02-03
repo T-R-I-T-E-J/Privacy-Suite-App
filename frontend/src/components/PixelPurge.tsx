@@ -22,7 +22,7 @@ export function PixelPurge() {
   const [fakeGpsLat, setFakeGpsLat] = useState('');
   const [fakeGpsLon, setFakeGpsLon] = useState('');
   const [quality, setQuality] = useState(100);
-  const [forceFfmpeg, setForceFfmpeg] = useState(false);
+  const [forceExiftool, setForceExiftool] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = useCallback((file: File) => {
@@ -125,10 +125,10 @@ export function PixelPurge() {
     await processImage(selectedFile, {
       stripTags: tagsToStrip,
       fakeGps: gps,
-      forceFfmpeg,
+      forceExiftool,
       quality,
     });
-  }, [selectedFile, stripTags, fakeGpsLat, fakeGpsLon, forceFfmpeg, quality, processImage]);
+  }, [selectedFile, stripTags, fakeGpsLat, fakeGpsLon, forceExiftool, quality, processImage]);
 
   const handleDownload = useCallback(async () => {
     if (result?.success && result.outputPath && selectedFile && window.pixelPurge) {
@@ -272,15 +272,15 @@ export function PixelPurge() {
             />
           </div>
 
-          {/* Force FFmpeg */}
+          {/* Force ExifTool */}
           <div className="config-section">
             <label className="checkbox-label">
               <input
                 type="checkbox"
-                checked={forceFfmpeg}
-                onChange={(e) => setForceFfmpeg(e.target.checked)}
+                checked={forceExiftool}
+                onChange={(e) => setForceExiftool(e.target.checked)}
               />
-              Force FFmpeg (use FFmpeg for all processing)
+              Force ExifTool (use ExifTool for all processing)
             </label>
           </div>
 

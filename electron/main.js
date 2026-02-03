@@ -111,7 +111,7 @@ ipcMain.handle('pixel-purge:process', async (event, options) => {
     outputPath,
     stripTags = ['GPS', 'DateTime', 'Make', 'Model', 'Software'],
     fakeGps = null,
-    forceFfmpeg = false,
+    forceExiftool = false,
     quality = 100,
   } = options;
 
@@ -171,8 +171,8 @@ ipcMain.handle('pixel-purge:process', async (event, options) => {
       args.push('--fake-gps', `${fakeGps.lat},${fakeGps.lon}`);
     }
 
-    if (forceFfmpeg) {
-      args.push('--force-ffmpeg');
+    if (forceExiftool) {
+      args.push('--force-exiftool');
     }
 
     // Execute binary

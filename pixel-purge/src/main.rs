@@ -23,9 +23,9 @@ struct Args {
     #[arg(long)]
     fake_gps: Option<String>,
     
-    /// Force use of FFmpeg
+    /// Force use of ExifTool
     #[arg(long)]
-    force_ffmpeg: bool,
+    force_exiftool: bool,
     
     /// JPEG quality (1-100, default: 100)
     #[arg(long, default_value = "100")]
@@ -79,7 +79,7 @@ fn main() {
         ProcessingOptions {
             strip_tags,
             fake_gps,
-            force_ffmpeg: args.force_ffmpeg,
+            force_exiftool: args.force_exiftool,
             quality: args.quality,
         }
     };
