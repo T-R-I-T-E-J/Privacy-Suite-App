@@ -1,0 +1,25 @@
+{
+  "name": "privacy-suite",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "electron .",
+    "build": "npm run build:frontend && electron-builder",
+    "build:frontend": "cd frontend && npm run build",
+    "install:all": "npm install && cd frontend && npm install"
+  },
+  "dependencies": {
+    "electron": "29.0.0",
+    "electron-log": "5.1.2",
+    "electron-security-utils": "1.6.0",
+    "electron-reload": "2.0.0",
+    "@electron/remote": "2.1.2"
+  },
+  "devDependencies": {
+    "electron-builder": "24.13.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

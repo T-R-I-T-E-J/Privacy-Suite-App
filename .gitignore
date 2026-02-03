@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+target/
+Cargo.lock
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+*.so
+*.dylib
+*.dll
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Electron
+out/
+release/
+
+# Models (large files)
+frontend/public/airgap/models/*.bin
+!frontend/public/airgap/models/.gitkeep
+
+# Tools
+tools/ffmpeg-*
+tools/openssl-*
