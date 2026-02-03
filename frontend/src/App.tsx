@@ -19,7 +19,7 @@ declare global {
 }
 
 // Update Module Types
-type Module = 'sensi-scan' | 'pixel-purge' | 'code-audit' | 'career-cloak' | 'secret-capsule' | 'mock-generator' | null;
+type Module = 'code-audit' | 'career-cloak' | 'secret-capsule' | 'mock-generator' | null;
 
 function App() {
     const [selectedModule, setSelectedModule] = useState<Module>(null)
@@ -55,18 +55,6 @@ function App() {
             title: 'Mock Generator',
             description: 'Anonymized Data Streamer (Millions of Rows)',
             icon: '🎭'
-        },
-        {
-            id: 'sensi-scan',
-            title: 'SensiScan',
-            description: 'Scan documents for sensitive PII',
-            icon: '🔍'
-        },
-        {
-            id: 'pixel-purge',
-            title: 'PixelPurge',
-            description: 'Remove EXIF metadata from images',
-            icon: '🖼️'
         }
     ]
 
