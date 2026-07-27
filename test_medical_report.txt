@@ -1,0 +1,45 @@
+MEDICAL LABORATORY REPORT
+
+Patient: John Doe
+Date: February 4, 2026
+Lab ID: LAB-2026-001234
+
+COMPLETE BLOOD COUNT (CBC)
+
+Test Name                Result      Reference Range      Units
+------------------------------------------------------------------------
+Hemoglobin              13.2        13.5 - 17.5          g/dL
+Hematocrit              39.5        38.0 - 50.0          %
+Red Blood Cells         4.45        4.50 - 5.90          million/µL
+White Blood Cells       7.2         4.5 - 11.0           thousand/µL
+Platelets               245         150 - 400            thousand/µL
+
+METABOLIC PANEL
+
+Glucose (Fasting)       105         70 - 100             mg/dL
+Creatinine              1.1         0.7 - 1.3            mg/dL
+BUN                     18          7 - 20               mg/dL
+Sodium                  140         136 - 145            mmol/L
+Potassium               4.2         3.5 - 5.1            mmol/L
+
+LIPID PANEL
+
+Total Cholesterol       215         < 200                mg/dL
+LDL Cholesterol         135         < 100                mg/dL
+HDL Cholesterol         48          > 40                 mg/dL
+Triglycerides           160         < 150                mg/dL
+
+THYROID FUNCTION
+
+TSH                     2.8         0.4 - 4.0            mIU/L
+Free T4                 1.2         0.8 - 1.8            ng/dL
+
+NOTES:
+- Hemoglobin slightly below normal range
+- Fasting glucose slightly elevated
+- LDL cholesterol elevated
+- Triglycerides slightly elevated
+
+This report should be reviewed with your healthcare provider.
+
+End of Report
